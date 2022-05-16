@@ -16,7 +16,7 @@ class RootIndex extends React.Component {
         <Hero
           image={author.heroImage.gatsbyImageData}
           title={author.name}
-          content={author.shortBio}
+          content={author.shortBio.shortBio}
         />
         <ArticlePreview posts={posts} />
       </Layout>
@@ -43,7 +43,7 @@ export const pageQuery = graphql`
           )
         }
         description {
-          raw
+          description
         }
       }
     }
@@ -53,7 +53,7 @@ export const pageQuery = graphql`
       nodes {
         name
         shortBio {
-          raw
+          shortBio
         }
         title
         heroImage: image {

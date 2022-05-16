@@ -16,33 +16,30 @@ class BlogPostTemplate extends React.Component {
     const post = get(this.props, 'data.contentfulBlogPost')
     const previous = get(this.props, 'data.previous')
     const next = get(this.props, 'data.next')
-    const plainTextDescription = documentToPlainTextString(
-      JSON.parse(post.description.raw)
-    )
-    const plainTextBody = documentToPlainTextString(JSON.parse(post.body.raw))
-    const { minutes: timeToRead } = readingTime(plainTextBody)
+
+    // const { minutes: timeToRead } = readingTime(post.body.body)
 
     return (
       <Layout location={this.props.location}>
         <Seo
           title={post.title}
-          description={plainTextDescription}
+          description={post.description.description}
           image={`http:${post.heroImage.resize.src}`}
         />
         <Hero
           image={post.heroImage?.gatsbyImageData}
           title={post.title}
-          content={post.description}
+          content={post.description.description}
         />
         <div className={styles.container}>
           <span className={styles.meta}>
             {post.author?.name} &middot;{' '}
-            <time dateTime={post.rawDate}>{post.publishDate}</time> –{' '}
-            {timeToRead} minute read
+            {/* <time dateTime={post.rawDate}>{post.publishDate}</time> –{' '} */}
+            {/* {timeToRead} minute read */}
           </span>
           <div className={styles.article}>
             <div className={styles.body}>
-              {post.body?.raw && renderRichText(post.body)}
+              {/* {post.body?.body && renderRichText(post.body?.body)} */}
             </div>
             <Tags tags={post.tags} />
             {(previous || next) && (
@@ -95,11 +92,11 @@ export const pageQuery = graphql`
         }
       }
       body {
-        raw
+        body
       }
       tags
       description {
-        raw
+        description
       }
     }
     previous: contentfulBlogPost(slug: { eq: $previousPostSlug }) {
