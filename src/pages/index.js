@@ -5,11 +5,13 @@ import get from 'lodash/get'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
+import Menu from '../components/homePage/menu'
 
 class RootIndex extends React.Component {
   render() {
     const posts = get(this, 'props.data.allContentfulBlogPost.nodes')
     const [author] = get(this, 'props.data.allContentfulPerson.nodes')
+    const categories = get(this, 'props.data.allContentfulCategory.nodes')
 
     return (
       <Layout location={this.props.location}>
@@ -19,6 +21,7 @@ class RootIndex extends React.Component {
           content={author.shortBio.shortBio}
         />
         <ArticlePreview posts={posts} />
+        <Menu categories={categories} />
       </Layout>
     )
   }
@@ -62,6 +65,23 @@ export const pageQuery = graphql`
             placeholder: BLURRED
             width: 1180
           )
+        }
+      }
+    }
+
+    allContentfulCategory(sort: { fields: index, order: ASC }) {
+      nodes {
+        name
+        menu {
+          active
+          name
+          slug
+          price
+          ingredient
+          image {
+            title
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+          }
         }
       }
     }

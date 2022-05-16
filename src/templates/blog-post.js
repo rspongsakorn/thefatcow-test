@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
-import { renderRichText } from 'gatsby-source-contentful/rich-text'
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import readingTime from 'reading-time'
+// import { renderRichText } from 'gatsby-source-contentful/rich-text'
+// import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
+// import readingTime from 'reading-time'
 
 import Seo from '../components/seo'
 import Layout from '../components/layout'
